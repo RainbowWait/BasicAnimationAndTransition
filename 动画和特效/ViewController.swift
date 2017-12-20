@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var btn2: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -24,6 +25,11 @@ class ViewController: UIViewController {
     }
     
     @IBAction func btnAction2(_ sender: UIButton) {
+        let toVC = SecondViewController()
+        navigationController?.delegate = self
+//        transitioningDelegate = sender
+        navigationController?.pushViewController(toVC, animated: true)
+        
     }
     
     
@@ -54,6 +60,8 @@ class ViewController: UIViewController {
 
 }
 
+//MARK: - Present 和 Dismiss过渡效果
+//UIViewControllerTransitioningDelegate
 extension ViewController : UIViewControllerTransitioningDelegate {
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return PresentedAnimation()
@@ -112,14 +120,148 @@ class DismissAnimation: NSObject, UIViewControllerAnimatedTransitioning {
         }) { (finished) in
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
         }
+    }
+
+}
+
+//MARK: - push 和 pop过渡动画
+extension ViewController: UINavigationControllerDelegate {
+    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning?{
         
+        let transitioningAnimation = ExpandAnimation(type:operation)
+        transitioningAnimation.sender = btn2
+        //返回动画的实现类
+        return transitioningAnimation
+    }
+    
+}
+
+class ExpandAnimation: NSObject, UIViewControllerAnimatedTransitioning, CAAnimationDelegate {
+    
+    init(type: UINavigationControllerOperation) {
+        super.init()
+        self.type = type
+    }
+    
+    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+        return 0.5
+    }
+    
+    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        self.transitionContext = transitionContext
+        if self.type == UINavigationControllerOperation.pop {
+            
+        } else if self.type == UINavigationControllerOperation.push {
+            
+            
+        }
+    }
+    
+    func PopTransition(transitionContext: UIViewControllerContextTransitioning) {
+        let fromVC = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from)
+        let toVC = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to)
+        let containerView = transitionContext.containerView
+        let view = toVC?.view
+        containerView.addSubview((toVC?.view)!)
+        containerView.addSubview((fromVC?.view)!)
         
+        //遮罩层
+        let mask = CAShapeLayer()
+        fromVC?.view.layer.mask = mask
+        //画出小圆
+        let s_center = CGPoint(x: 50, y: 50)
+        let s_radius: CGFloat = CGFloat(sqrt(800))
+        let s_rect = CGRect(x: s_center.x, y: s_center.y, width: 1, height: 1)
         
+        let s_maskPath = UIBezierPath(rect: s_rect.insetBy(dx: -s_radius, dy: -s_radius))
+//        mask.path = s_maskPath.cgPath
         
+        //画大圆
+        let l_center = CGPoint(x: 50, y: 50)
+        let l_radius = sqrt(pow((view?.bounds.width)! - l_center.x, 2) + pow((view?.bounds.height)! - l_center.y, 2)) + 150
+        let l_rect = CGRect(x: l_center.x, y: l_center.y, width: 1, height: 1)
+        
+        let l_maskPath = UIBezierPath(rect: l_rect.insetBy(dx: -l_radius, dy: -l_radius))
+        let baseAnimation = CABasicAnimation(keyPath: "path")
+        baseAnimation.duration = transitionDuration(using: transitionContext)
+        baseAnimation.fromValue = l_maskPath.cgPath
+        baseAnimation.toValue = s_maskPath.cgPath
+        baseAnimation.delegate = self as! CAAnimationDelegate
+        baseAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
+        mask.add(baseAnimation, forKey: "path")
         
         
         
     }
     
+    func PushTransition(transitionContext: UIViewControllerContextTransitioning) {
+        let frmoVC = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from)
+        let toVC = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to)
+        let finalFrame = transitionContext.finalFrame(for: toVC!)
+        let containerView = transitionContext.containerView
+        let view = toVC?.view
+        containerView.addSubview((toVC?.view)!)
+        //小圆路径
+        let s_maskPath = UIBezierPath(ovalIn: (sender?.frame)!)
+        //大圆路径
+        let l_center = (sender?.center)!
+        var l_radius: CGFloat
+        if (sender?.frame.origin.x)! > (toVC?.view.bounds.width)! / 2.0 {
+            if (sender?.frame.origin.y)! < (toVC?.view.bounds.size.height)! / 2.0 {
+                
+                //右上角
+                l_radius = sqrt(pow(0-l_center.x, 2) + pow((view?.frame.maxY)!-l_center.y, 2))
+            } else {
+                //右下角
+                l_radius = sqrt(pow(0 - l_center.x, 2) + pow(0 - l_center.y, 2))
+                
+                
+            }
+            
+        } else {
+            if (sender?.frame.origin.y)! < (toVC?.view.bounds.size.height)! / 2.0 {
+                //左上角
+                l_radius = sqrt(pow((view?.frame.maxX)! - l_center.x, 2) + pow((view?.frame.maxY)! - l_center.y, 2))
+                
+            } else {
+                //左下角
+                l_radius = sqrt(pow((view?.frame.maxX)! - l_center.x, 2) + pow(0 - l_center.y, 2))
+            }
+        }
+        l_radius += 50
+        let l_rect = CGRect(x: l_center.y, y: l_center.y, width: 1, height: 1)
+        
+        
+        let l_maskPath = UIBezierPath(ovalIn: l_rect.offsetBy(dx: -l_radius, dy: -l_radius))
+        //遮罩层
+        let mask = CAShapeLayer()
+        mask.path = l_maskPath.cgPath
+        view?.layer.mask = mask
+        let baseAnimation = CABasicAnimation(keyPath: "path")
+        baseAnimation.duration = transitionDuration(using: transitionContext)
+        baseAnimation.fromValue = s_maskPath.cgPath
+        baseAnimation.toValue = l_maskPath.cgPath
+        baseAnimation.delegate = self
+        baseAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
+        mask.add(baseAnimation, forKey: "path")
+        
+    }
+    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+      //动画完成后去除遮罩
+        self.transitionContext.completeTransition(true)
+        //动画完成后去除遮罩
+        self.transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from)?.view.layer.mask = nil
+        self.transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to)?.view.layer.mask = nil
+    }
+    
+    //保存上下文
+    var transitionContext: UIViewControllerContextTransitioning!
+    //Pop or push
+    var type: UINavigationControllerOperation!
+    //初始点击的UIView对象,需要他的frame作为初始位置
+    var sender: UIView?
+    
+    
     
 }
+
