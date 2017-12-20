@@ -20,7 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.backgroundColor = UIColor.white
         self.window?.makeKeyAndVisible()
-        let navi = UINavigationController(rootViewController: ViewController())
+        let sb = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let vc = sb.instantiateViewController(withIdentifier: "root")
+        
+        let navi = UINavigationController(rootViewController: vc)
         self.window?.rootViewController = navi
         
         return true
