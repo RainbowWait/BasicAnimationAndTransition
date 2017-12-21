@@ -11,14 +11,18 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet weak var btn2: UIButton!
+    //dismiss的交互效果
+    var interactiveTransition:SwipeUpInteractiveTransition!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor.yellow
 
     }
 
     @IBAction func btnAction1(_ sender: Any) {
         let toVC = FirstViewController()
         toVC.transitioningDelegate = self
+        interactiveTransition = SwipeUpInteractiveTransition(vc: toVC)
         navigationController?.present(toVC, animated: true, completion: nil)
         
         
@@ -71,6 +75,12 @@ extension ViewController : UIViewControllerTransitioningDelegate {
         return DismissAnimation()
     }
     
+    //返回dismiss使用的UIViewControllerAnimatedTransitioning类
+    
+    func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return interactiveTransition.isInteraction ? interactiveTransition:nil
+    }
+    
 }
 
 public class PresentedAnimation: NSObject, UIViewControllerAnimatedTransitioning {
@@ -105,6 +115,9 @@ class DismissAnimation: NSObject, UIViewControllerAnimatedTransitioning {
         return 0.6
     }
     
+    
+    
+    
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         let fromVC = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from)
         let toVC = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to)
@@ -134,6 +147,7 @@ extension ViewController: UINavigationControllerDelegate {
         return transitioningAnimation
     }
     
+    
 }
 
 class ExpandAnimation: NSObject, UIViewControllerAnimatedTransitioning, CAAnimationDelegate {
@@ -150,9 +164,9 @@ class ExpandAnimation: NSObject, UIViewControllerAnimatedTransitioning, CAAnimat
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         self.transitionContext = transitionContext
         if self.type == UINavigationControllerOperation.pop {
-            
+            PopTransition(transitionContext: transitionContext)
         } else if self.type == UINavigationControllerOperation.push {
-            
+            PushTransition(transitionContext: transitionContext)
             
         }
     }
@@ -186,7 +200,7 @@ class ExpandAnimation: NSObject, UIViewControllerAnimatedTransitioning, CAAnimat
         baseAnimation.duration = transitionDuration(using: transitionContext)
         baseAnimation.fromValue = l_maskPath.cgPath
         baseAnimation.toValue = s_maskPath.cgPath
-        baseAnimation.delegate = self as! CAAnimationDelegate
+        baseAnimation.delegate = self
         baseAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
         mask.add(baseAnimation, forKey: "path")
         
@@ -206,7 +220,7 @@ class ExpandAnimation: NSObject, UIViewControllerAnimatedTransitioning, CAAnimat
         //大圆路径
         let l_center = (sender?.center)!
         var l_radius: CGFloat
-        if (sender?.frame.origin.x)! > (toVC?.view.bounds.width)! / 2.0 {
+        if (sender?.frame.origin.x)! >= (toVC?.view.bounds.width)! / 2.0 {
             if (sender?.frame.origin.y)! < (toVC?.view.bounds.size.height)! / 2.0 {
                 
                 //右上角
@@ -229,7 +243,8 @@ class ExpandAnimation: NSObject, UIViewControllerAnimatedTransitioning, CAAnimat
             }
         }
         l_radius += 50
-        let l_rect = CGRect(x: l_center.y, y: l_center.y, width: 1, height: 1)
+//        l_radius = 100
+        let l_rect = CGRect(x: l_center.x, y: l_center.y, width: 1, height: 1)
         
         
         let l_maskPath = UIBezierPath(ovalIn: l_rect.offsetBy(dx: -l_radius, dy: -l_radius))
@@ -237,12 +252,13 @@ class ExpandAnimation: NSObject, UIViewControllerAnimatedTransitioning, CAAnimat
         let mask = CAShapeLayer()
         mask.path = l_maskPath.cgPath
         view?.layer.mask = mask
+        
         let baseAnimation = CABasicAnimation(keyPath: "path")
         baseAnimation.duration = transitionDuration(using: transitionContext)
         baseAnimation.fromValue = s_maskPath.cgPath
         baseAnimation.toValue = l_maskPath.cgPath
         baseAnimation.delegate = self
-        baseAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
+        baseAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
         mask.add(baseAnimation, forKey: "path")
         
     }
@@ -263,5 +279,55 @@ class ExpandAnimation: NSObject, UIViewControllerAnimatedTransitioning, CAAnimat
     
     
     
+}
+
+//MARK: - 过渡交互
+class SwipeUpInteractiveTransition: UIPercentDrivenInteractiveTransition {
+    var vc: UIViewController?
+    //是否正在交互
+    var isInteraction: Bool = false
+    //是否判断交互完成
+    var shouldComplete: Bool = false
+    
+    init(vc: UIViewController) {
+        super.init()
+        self.vc = vc
+        let pan = UIPanGestureRecognizer()
+        pan.addTarget(self, action: #selector(panGestureHandler(_:)))
+        vc.view.addGestureRecognizer(pan)
+    }
+    
+    @objc func panGestureHandler(_ gesture: UIPanGestureRecognizer) {
+        
+        let translation = gesture.translation(in: gesture.view)
+        switch gesture.state {
+        case .began:
+            //标记交互开始,dismiss model
+            isInteraction = true
+            vc?.dismiss(animated: true, completion: nil)
+            print("开始")
+        case .changed:
+            var fraction = Float(translation.y / 500)
+            //限制fraction值在0-1之间
+            fraction = fminf(fmaxf(fraction, 0.0), 1.0)
+            shouldComplete = fraction > 0.5
+            update(CGFloat(fraction))
+            print("fraction: \(fraction)")
+            print("shouldComplete: \(shouldComplete)")
+            print("x: \(translation.x),y: \(translation.y)")
+            
+        case .ended,.cancelled:
+            isInteraction = false
+            if ((!self.shouldComplete) || (gesture.state == .cancelled)){
+                cancel()
+                print("取消")
+            } else {
+                finish()
+                print("结束")
+            }
+        default:
+            break
+        }
+    }
 }
 

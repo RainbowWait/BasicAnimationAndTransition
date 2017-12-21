@@ -10,14 +10,42 @@ import UIKit
 
 class SecondViewController: UIViewController {
 
+    //放射
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.view.backgroundColor = UIColor.green
+//        self.example1()
+        self.example2()
     }
+    
+    func example1() {
+        UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1, options: UIViewAnimationOptions.curveEaseIn, animations: {
+            //平移
+            let translate = CGAffineTransform(translationX: 0, y: 300)
+            //旋转
+            let rote = CGAffineTransform(rotationAngle: 15 * CGFloat.pi / 18)
+            self.view.transform = translate.concatenating(rote)
+            
+            
+        }, completion: nil)
+    }
+    
+    func example2() {
+        UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1, options: UIViewAnimationOptions.curveEaseIn, animations: {
+            //平移
+            let translate = CGAffineTransform(translationX: 110, y: 0)
+            //旋转
+            let scale = CGAffineTransform(scaleX: 0.8, y:0.8)
+            self.view.transform = translate.concatenating(scale)
+            
+            
+        }, completion: nil)
+    }
+    
+    
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.navigationController?.popViewController(animated: true)
+//        self.navigationController?.popViewController(animated: true)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

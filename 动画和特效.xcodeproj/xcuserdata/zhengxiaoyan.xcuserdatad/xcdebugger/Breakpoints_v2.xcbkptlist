@@ -2,4 +2,214 @@
 <Bucket
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x52a8;&#x753b;&#x548c;&#x7279;&#x6548;/ViewController.swift"
+            timestampString = "535533639.684929"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "226"
+            endingLineNumber = "226"
+            landmarkName = "PushTransition(transitionContext:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "&#x52a8;&#x753b;&#x548c;&#x7279;&#x6548;.ExpandAnimation.PushTransition(transitionContext: __ObjC.UIViewControllerContextTransitioning) -&gt; ()"
+                  moduleName = "&#x52a8;&#x753b;&#x548c;&#x7279;&#x6548;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhengxiaoyan/Desktop/Swift/%E5%8A%A8%E7%94%BB%E5%92%8C%E7%89%B9%E6%95%88/%E5%8A%A8%E7%94%BB%E5%92%8C%E7%89%B9%E6%95%88/ViewController.swift"
+                  timestampString = "535524381.631947"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "226"
+                  endingLineNumber = "226"
+                  offsetFromSymbolStart = "2688">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "&#x52a8;&#x753b;&#x548c;&#x7279;&#x6548;.ExpandAnimation.PushTransition(transitionContext: __ObjC.UIViewControllerContextTransitioning) -&gt; ()"
+                  moduleName = "&#x52a8;&#x753b;&#x548c;&#x7279;&#x6548;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhengxiaoyan/Desktop/Swift/%E5%8A%A8%E7%94%BB%E5%92%8C%E7%89%B9%E6%95%88/%E5%8A%A8%E7%94%BB%E5%92%8C%E7%89%B9%E6%95%88/ViewController.swift"
+                  timestampString = "535524381.633845"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "226"
+                  endingLineNumber = "226"
+                  offsetFromSymbolStart = "6628">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x52a8;&#x753b;&#x548c;&#x7279;&#x6548;/ViewController.swift"
+            timestampString = "535533639.685065"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "230"
+            endingLineNumber = "230"
+            landmarkName = "PushTransition(transitionContext:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x52a8;&#x753b;&#x548c;&#x7279;&#x6548;/ViewController.swift"
+            timestampString = "535533639.685149"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "238"
+            endingLineNumber = "238"
+            landmarkName = "PushTransition(transitionContext:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "&#x52a8;&#x753b;&#x548c;&#x7279;&#x6548;.ExpandAnimation.PushTransition(transitionContext: __ObjC.UIViewControllerContextTransitioning) -&gt; ()"
+                  moduleName = "&#x52a8;&#x753b;&#x548c;&#x7279;&#x6548;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhengxiaoyan/Desktop/Swift/%E5%8A%A8%E7%94%BB%E5%92%8C%E7%89%B9%E6%95%88/%E5%8A%A8%E7%94%BB%E5%92%8C%E7%89%B9%E6%95%88/ViewController.swift"
+                  timestampString = "535524381.649394"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "237"
+                  endingLineNumber = "237"
+                  offsetFromSymbolStart = "3692">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "&#x52a8;&#x753b;&#x548c;&#x7279;&#x6548;.ExpandAnimation.PushTransition(transitionContext: __ObjC.UIViewControllerContextTransitioning) -&gt; ()"
+                  moduleName = "&#x52a8;&#x753b;&#x548c;&#x7279;&#x6548;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhengxiaoyan/Desktop/Swift/%E5%8A%A8%E7%94%BB%E5%92%8C%E7%89%B9%E6%95%88/%E5%8A%A8%E7%94%BB%E5%92%8C%E7%89%B9%E6%95%88/ViewController.swift"
+                  timestampString = "535524381.651277"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "237"
+                  endingLineNumber = "237"
+                  offsetFromSymbolStart = "6688">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x52a8;&#x753b;&#x548c;&#x7279;&#x6548;/ViewController.swift"
+            timestampString = "535533639.685225"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "242"
+            endingLineNumber = "242"
+            landmarkName = "PushTransition(transitionContext:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "&#x52a8;&#x753b;&#x548c;&#x7279;&#x6548;.ExpandAnimation.PushTransition(transitionContext: __ObjC.UIViewControllerContextTransitioning) -&gt; ()"
+                  moduleName = "&#x52a8;&#x753b;&#x548c;&#x7279;&#x6548;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhengxiaoyan/Desktop/Swift/%E5%8A%A8%E7%94%BB%E5%92%8C%E7%89%B9%E6%95%88/%E5%8A%A8%E7%94%BB%E5%92%8C%E7%89%B9%E6%95%88/ViewController.swift"
+                  timestampString = "535524381.655716"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "241"
+                  endingLineNumber = "241"
+                  offsetFromSymbolStart = "4140">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "&#x52a8;&#x753b;&#x548c;&#x7279;&#x6548;.ExpandAnimation.PushTransition(transitionContext: __ObjC.UIViewControllerContextTransitioning) -&gt; ()"
+                  moduleName = "&#x52a8;&#x753b;&#x548c;&#x7279;&#x6548;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhengxiaoyan/Desktop/Swift/%E5%8A%A8%E7%94%BB%E5%92%8C%E7%89%B9%E6%95%88/%E5%8A%A8%E7%94%BB%E5%92%8C%E7%89%B9%E6%95%88/ViewController.swift"
+                  timestampString = "535524381.657687"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "241"
+                  endingLineNumber = "241"
+                  offsetFromSymbolStart = "6728">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x52a8;&#x753b;&#x548c;&#x7279;&#x6548;/ViewController.swift"
+            timestampString = "535533639.685301"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "321"
+            endingLineNumber = "321"
+            landmarkName = "panGestureHandler(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x52a8;&#x753b;&#x548c;&#x7279;&#x6548;/ViewController.swift"
+            timestampString = "535533639.685369"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "325"
+            endingLineNumber = "325"
+            landmarkName = "panGestureHandler(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x52a8;&#x753b;&#x548c;&#x7279;&#x6548;/ViewController.swift"
+            timestampString = "535533639.685437"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "326"
+            endingLineNumber = "326"
+            landmarkName = "panGestureHandler(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
